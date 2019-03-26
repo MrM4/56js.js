@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .con{
+            width:300px;
+            height: 500px;
+            border:1px solid #ccc;
+            margin:100px auto;
+
+        }
+
+        .con div{
+            margin:30px 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="con">
+        <div class="post">
+            <input type="text">
+            <button>邮箱验证</button>        
+        </div>
+        <div class="qq">
+            <input type="text">
+            <button>QQ验证</button>        
+        </div>
+        <div class="tel">
+            <input type="text">
+            <button>手机号验证</button>        
+        </div>
+    </div>  
+    
+    <script>
+        let oText=document.querySelectorAll("input"),
+            oBtn=document.querySelectorAll("button"),
+            len=oBtn.length
+
+        let mypost=/^([0-9]|[a-zA-Z])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})/,
+            myqq=/^[1-9]\d{4,10}$/,
+            mytel=/^[1][3,4,5,6,7,8,9][0-9]{9}$/,
+            arr=[mypost,myqq,mytel]
+        for(let i=0;i<len;i++){
+            oBtn[i].onclick=function(){
+                console.log(arr[i])
+                if(arr[i].test(oText[i].value)){
+                    alert("验证成功")
+                    
+                }else(
+                    alert("请重新输入")
+                )
+            }
+        }
+    </script>
+</body>
+</html>

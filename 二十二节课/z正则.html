@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            正则表达式  （regular expression）  
+            作用：检索替换符合某种模式的文本（字符串）
+
+            exec    通过模式 检索字符串 返回第一个匹配成功项 没有返回null
+
+            test    通过模式 返回布尔值 有则true 没有返回false
+
+            正则表达方式： /模式/
+
+            string方法  replace     match       search
+
+            \ 转义字符
+
+            创建正则
+                1：字面量直接量 let reg=/5/
+
+                2.let reg=new RegExp(a)
+
+            元字符：形成规则
+
+                \w  匹配所有的字母，数字，_下划线       不匹配中文，特殊字符，空格
+                \W  匹配非字母，非数字，非下划线
+
+                \d  匹配所有的数字
+                \D  匹配非数字
+
+                \s  匹配空格
+                \S  匹配非空格
+
+                \b  单词边界
+                \B  非单词边界
+
+                .   匹配单个字符    除了换行符及\n  \r
+
+                ^   匹配字符串起始
+
+                $   匹配字符串结束      /m$/
+
+
+            量词
+                一般写法：{1,8}
+                默认    贪婪模式匹配    按照最高次去匹配 如果不够 依次降低
+                        非贪婪模式      按照最低次匹配  在量词后边加？
+
+                特殊写法{2,}    第二个不写代表无穷
+                        {,5}    前面不写代表0
+                        {0,} //*   全部
+                        {0,1} //?  可有可无
+                        {1,} //+   至少匹配一个
+
+                let reg=/\d{4}/g
+
+
+            标识符
+                g   全局匹配(global) 影响lastindex
+
+                i   忽略大小写
+
+                m   换行匹配
+
+            子集()
+
+                捕获型子集
+
+                非捕获型子集(?:)
+
+            范围词
+                [0-9]+
+                [a-z]+
+                [\u4300-\u9fa5]
+
+            或者 |  左右两边任意一个就可以
+
+
+            正则断言
+                (?=X)零宽度 正先行 断言         X条件 
+                (?|X)零宽度 负先行 断言
+                (?<=X)零宽度 正后先行 断言
+                (?<|X)零宽度 负后先行 断言
+        */
+        let str="mse没11112011W15\nm29152"
+        let reg= /^M/gim
+        console.log(reg.lastIndex)
+        // console.log(reg.exec(str))
+        console.log(str.match(reg))
+        console.log(reg.lastIndex)
+    </script>    
+</body>
+</html>

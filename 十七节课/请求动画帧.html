@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        #wrap{
+            width:200px;
+            height:200px;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrap"></div>
+    <script>
+        //兼容写法
+        window.requestAnimationFrame=window.requestAnimationFrame||function(fn){
+                return setTimeout(fn,1000/60)
+        }//请求动画
+
+        //clearTimeout()        cancelAnimationFrame()      //取消动画帧
+        window.cancelAnimationFrame=window.cancelAnimationFrame||clearTimeout
+        
+        var wrap=document.getElementById("wrap")
+        var change=0
+        function move(){
+            change++
+            wrap.style.width=change+"px"
+            var ani = requestAnimationFrame(move)   //IE9以下不兼容
+            if(change==500){
+                cancelAnimationFrame(ani)
+            }
+        }
+        move()
+        /*
+            requestAnimationFrame()     //IE9以下不兼容
+            cancelAnimationFrame()
+
+            变量
+            多作用域内可使用并且值固定 全局声明并赋值
+            多作用域内 可使用   值不固定    全局声明 函数内动态赋值
+            单作用域    可使用  局部声明并赋值
+
+            兼容
+                1.兼容要放在第一行
+                2.保证API 写法一样
+                3.不能把window取消，不然会报错
+                4.前面的window 可留可不留
+            window.requersAnimationFrame=window.requestAnimationFrame||function(fn){
+                return setTimeout(fn,1000/60)
+            }//请求动画
+
+            //clearTimeout()        cancelAnimationFrame()      //取消动画帧
+            window.cancelAnimationFrame=window.cancelAnimationFrame||clearTimeout
+        */
+
+        /*
+            获取元素样式的方法
+                getComputedStyle()
+        */
+        //console.log(getComputedStyle(wrap)) //此操作不兼容IE8及以下
+        //console.log(wrap.currentStyle)
+
+        //获取元素样式兼容写法
+        function getStyle(ele){                
+            return ele.currentStyle || getComputedStyle(ele)
+        }          
+    </script>    
+</body>
+</html>

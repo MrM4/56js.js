@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        #wrap{
+            width:100px;
+            height:100px;
+            background-color:red;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrap">
+
+    </div>
+    <script>
+        //兼容写法
+        window.requestAnimationFrame=window.requestAnimationFrame||function(fn){
+                return setTimeout(fn,1000/60)
+        }//请求动画
+
+        //clearTimeout()        cancelAnimationFrame()      //取消动画帧
+        window.cancelAnimationFrame=window.cancelAnimationFrame||clearTimeout
+
+
+        function getStyle(ele){                
+            return ele.currentStyle || getComputedStyle(ele)
+        }
+
+        let wrap=document.getElementById("wrap")
+
+        /*
+        当前时间-起始时间/time=当前属性值-初始属性值/最终属性值-初始属性值
+        */  
+        animation(wrap,{
+            width:"500px",
+            height:"500px"
+        },1000,callBack)
+
+        //回调函数
+        function callBack(){
+            console.log("执行完毕")
+        }
+
+
+        function animation(ele,data,time,cb){
+            var time0=new Date()            //起始时间
+            var startStyle=getStyle(wrap)   //初始样式
+            var startValue={}               
+            var changeValue={}
+            for( var key in data){          
+                var val=parseFloat(startStyle[key])
+                val=isNaN(val)?0:val
+                startValue[key]=val
+                changeValue[key]=parseFloat(data[key])-startValue[key]
+                
+            }
+
+            run()
+            function run(){
+                var time1=new Date()
+                var chageTime=time1-time0
+                if(chageTime>=time){
+                    chageTime=time
+                }else{
+                    requestAnimationFrame(run)
+                }
+                for( var key in data){
+                var val1=(chageTime/time)*changeValue[key]+startValue[key]
+                ele.style[key]=val1+"px"
+                }
+                if(chageTime===time){
+                    cb()
+                }
+            }
+        }
+    </script>
+</body>
+</html>

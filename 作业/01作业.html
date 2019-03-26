@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        #box{
+            width:500px;
+            height:500px;
+            margin:100px auto;
+            background-color:greenyellow;
+            border:2px solid #ccc;
+        }
+        #change{
+            width:200px;
+            height:200px;
+            border:5px solid #000;
+            margin:150px 150px;
+            text-align:center;
+            line-height:200px;
+        }
+        .box{
+            display:inline-block;
+            width:100px;
+            height:50px;
+            border:2px solid #999;
+            text-align:center;
+            line-height:50px;
+        }
+        #blue{
+            background-color:cyan;
+        }
+        #green{
+            background-color:chartreuse;
+        }
+        #pink{
+            background-color:hotpink;
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <div id="change"></div>
+        <div class="box" id="blue">忧郁蓝</div>
+        <div class="box" id="green">绿色</div>
+        <div class="box" id=pink>粉红</div>
+    </div>
+    <script>
+        let oBox=document.getElementById("box"),
+            oChange=document.getElementById("change"),
+            oBlue=document.getElementById("blue"),
+            ogreen=document.getElementById("green"),
+            oPink=document.getElementById("pink")
+        
+        oBlue.onclick=function(){
+            oChange.innerHTML="忧郁蓝";
+            oChange.style.backgroundColor="cyan";
+            oBox.style.backgroundColor="chartreuse"
+        }
+
+        ogreen.onclick=function(){
+            oChange.innerHTML="绿色";
+            oChange.style.backgroundColor="chartreuse";
+            oBox.style.backgroundColor="hotpink"
+        }
+
+        oPink.onclick=function(){
+            oChange.innerHTML="粉红";
+            oChange.style.backgroundColor="hotpink";
+            oBox.style.backgroundColor="cyan"
+        }
+
+        oChange.onmouseenter=function(){
+            oChange.innerHTML="touchme"
+            oChange.style.backgroundColor="yellow";
+
+        }
+        oChange.onmouseleave=function(){
+            oChange.innerHTML=""
+        }
+    </script>
+</body>
+</html>

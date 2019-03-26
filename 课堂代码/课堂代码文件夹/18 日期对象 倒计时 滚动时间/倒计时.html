@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>雀雀</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #wrap {
+            width: 400px;
+            height: 200px;
+            background-color: #f66;
+            font-size: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="wrap">
+        <p></p>
+    </div>
+    <script>
+        let con = document.getElementsByTagName("p")[0]
+
+        // 获取 天  时 分 秒 
+
+        function countTime() {
+            //过年时间
+            let happyTime = new Date(2019, 1, 5)
+
+            //当前时间
+            let date = new Date()
+
+            //获取时间差值  毫秒值
+            let num = happyTime - date
+            let day = jugde(Math.floor(num / 1000 / 60 / 60 / 24))
+
+            //let hh = Math.floor(num / 1000 / 60 / 60) - day * 24
+            let hh = jugde(Math.floor(num / 1000 / 60 / 60) % 24
+            )
+            let mm = jugde(Math.floor(num / 1000 / 60) % 60)
+
+            let ss = jugde(Math.floor(num / 1000) % 60)
+
+            con.innerHTML = `距离过年还有${day}天,${hh}小时,${mm}分钟,${ss}秒钟`
+        }
+
+
+        function jugde(a) {
+            if (a < 10) {
+                a = "0" + a
+            }
+
+            return a
+
+        }
+
+        setInterval(countTime, 1000)
+    </script>
+</body>
+
+</html>

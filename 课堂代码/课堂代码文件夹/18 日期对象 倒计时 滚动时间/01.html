@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>雀雀</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #wrap {
+            width: 200px;
+            height: 200px;
+            background-color: #f66;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="wrap"></div>
+    <script>
+        /*
+            内置时间对象
+
+            本初子午线  => 经度0 这条线   往左 西边  往右  东边  每隔15度 就是一个时区  每个时区 时间间隔为一个小时  往东 +   往西是-
+
+            北京  东经 112~120之前  东八区 
+
+            date = new Date() 
+
+            data是一个对象 
+
+            date.getFullYear() //返回当前的年份
+
+            date.getMonth()  //返回当前的月份  从0计次 如果获取来使用 记得+1
+
+            date.getDay() // 返回当前的星期  
+
+
+            date.getDate() //返回当前的日期
+
+
+            date.getHours() //返回当前的小时
+
+            date.getMinutes() //返回当前的分钟
+
+            date.getSeconds() //返回当前的秒数
+
+            date.getMilliseconds() //返回当前的毫秒值
+
+
+            date.getTime() //当前时间 距离 1970年 1月1日 00:00:00:00 过去了多少毫秒
+
+            计算机元年 : 1970年 1月1日 00:00:00:00
+
+            year1 = date.getYear() // 1900年 到现在年份的一个差值 单位是 年
+
+
+            date.toLocaleString() //年月日 时分秒 2019/1/25 下午9:03:14
+
+
+            date.toLocaleDateString() //年月日  2019/1/25
+
+            date.toTimeString() // 21:05:04 GMT+0800 (中国标准时间)
+
+            date.getTimezoneOffset() //世界时间 - 当前时间  返回一个分钟值
+
+            date.getUTCHours() // 世界当前的小时 
+
+            date.getUTCMinutes() //世界当前的分钟值
+
+
+            传参 获取 特定时间
+
+            var date1 = new Date(2019, 1, 5 ,0,0,0) 年份 月份 日期 时分秒 
+
+            var date1 = new Date(456455643455) 毫秒值 1970年过了这个毫秒值的一个事件
+
+            
+         */
+        var date = new Date()
+
+        var YY = date.getFullYear()
+
+        var MM = date.getMonth()
+
+        var WW = date.getDay()
+
+        var DD = date.getDate()
+
+        var HH = date.getHours()
+
+        var Miu = date.getMinutes()
+
+        var Sec = date.getSeconds()
+
+        var Ms = date.getMilliseconds()
+
+        var time = date.getTime()
+
+        var year1 = date.getYear()
+
+
+        console.log();
+
+        document.onclick = function () {
+            var date1 = new Date(2019, 1, 5)
+
+            console.log(date1);
+        }
+
+
+    </script>
+</body>
+
+</html>

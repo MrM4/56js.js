@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <ul id="wrap">
+        <li class="box">1</li>
+        <li class="box">2</li>
+        <li class="box">3</li>
+        <li class="box">4</li>
+    </ul>
+    <script>
+        /*
+            静态获取  
+                ById
+                querySelector  querySelectorAll
+
+            动态获取
+                className   Name  TagName
+        */
+        let wrap=document.getElementById("wrap")
+        let box=document.querySelectorAll("#wrap .box")
+        let box1=document.getElementsByClassName("box")
+        console.log(box)
+        wrap.innerHTML+='<li class="box">5</li>'
+        console.log(box)
+        console.log(box1)
+    </script>        
+</body>
+</html>

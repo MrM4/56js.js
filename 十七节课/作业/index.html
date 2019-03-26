@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        ul,ol{
+            list-style:none;
+        }
+        .wrap{
+            position:relative;
+            width:500px;
+            height:337px;
+            margin:100px auto;
+        }
+        .img{
+            height:337px;
+        }
+        .list{
+            position:absolute;
+            opacity:0;
+        }
+        img{
+            width:500px;
+            height:337px;
+            vertical-align:bottom;
+        }
+        .btn{
+            position:absolute;
+            top:150px;
+            width:45px;
+            z-index: 2;
+            height:35px;
+            font-size: 40px;
+            text-align: center;
+            line-height: 35px;
+            color:#fff;
+            background-color:#000;
+            opacity: 0.5;
+            border:none;
+        }
+        .btn-r{
+            right:0;
+        }
+        .point{
+            position:absolute;
+            z-index: 3;
+            top:300px;
+            left:350px;
+        }
+        .point span{
+            cursor:pointer;
+            display:inline-block;
+            width:15px;
+            height:15px;
+            background-color:#fff;
+            border-radius:50%;
+        }
+        .point .active{
+            background-color:red;    
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <ul class="img">
+            <li class="list">
+                <img src="img/1.jpg" alt="">
+            </li>
+            <li class="list">
+                <img src="img/2.jpg" alt="">
+            </li>
+            <li class="list">
+                <img src="img/3.jpg" alt="">
+            </li>
+            <li class="list">
+                <img src="img/4.jpg" alt="">
+            </li>
+            <li class="list">
+                <img src="img/5.jpg" alt="">
+            </li>
+        </ul>
+        <button class="btn-r btn">></button>
+        <button class="btn-l btn"><</button>
+        <div class="point">
+            <span class="active"></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+
+    <script src="animation.js"></script>
+    <script>
+        let aList=document.getElementsByClassName("list"),
+            rBtn=document.getElementsByClassName("btn")[0],
+            lBtn=document.getElementsByClassName("btn")[1],
+            aPoint=document.getElementsByTagName("span"),
+            wrap=document.querySelector(".wrap"),
+            index=0,
+            len=aList.length
+
+        animation(aList[index],{
+            data:{
+                opacity:1,
+                zIndex:2,
+            }
+        },500)
+
+        lBtn.onclick=function(){
+            run(index--)        //左按钮 index--
+
+        }
+
+        rBtn.onclick=function(){
+            run(index++)        //右按钮 index++
+        }
+
+        function move(){
+            run(index++)   
+        }
+
+        //自动轮播
+        let timer=setInterval(move,1000)    
+
+        wrap.onmouseenter=function(){
+            clearInterval(timer)
+        }
+
+        wrap.onmouseleave=function(){
+            timer=setInterval(move,1000)    
+        }
+
+        for(let i=0;i<len;i++){             //鼠标点击
+            aPoint[i].onclick=function(){
+
+                let a=index
+                index=i
+                run(a)
+            }
+        }
+
+        function run(j){
+            if(j===index)return
+            animation(aList[j],{    //当前显示的取消
+                data:{
+                    opacity:0,
+                    zIndex:1
+                }
+            },500)
+            aPoint[j].classList.remove("active")
+
+            if(index<0)index=len
+            if(index>4)index=0
+            animation(aList[index],{
+                data:{
+                    opacity:1,
+                    "z-index":2
+                }
+            },500)
+            aPoint[index].classList.add("active")
+        }
+    </script>
+</body>
+</html>

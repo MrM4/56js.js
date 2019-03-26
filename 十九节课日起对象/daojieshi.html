@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        ul,ol{
+            list-style:none;
+        }
+        .box{
+            width:336px;
+            height:61px;
+            background-color:pink;
+            margin:100px auto;
+            border-radius:5px;
+        }
+        ul{
+            overflow: hidden;
+            height:61px;
+        }
+        ul>li{
+            float:left;
+            width:42px;
+            text-align:center;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <ul>
+            <li class="list">
+                <img class="time" src="images/0.png" alt="">
+                <img class="sub" src="images/0.png" alt="">    
+            </li>
+            <li class="list">
+                <img class="time" src="images/0.png" alt="">
+                <img class="sub" src="images/0.png" alt=""> 
+            </li>
+            <li>
+                <img src="images/d.png" alt="">
+            </li>
+            <li class="list">
+                    <img class="time" src="images/0.png" alt="">
+                    <img class="sub" src="images/0.png" alt=""> 
+            </li>
+            <li class="list">
+                    <img class="time" src="images/0.png" alt="">
+                    <img class="sub" src="images/0.png" alt=""> 
+            </li>
+            <li>
+                <img src="images/d.png" alt="">
+            </li>
+            <li class="list">
+                <img class="time" src="images/0.png" alt="">
+                <img  class="sub"src="images/0.png" alt=""> 
+            </li>
+            <li class="list">
+                <img class="time" src="images/0.png" alt="">
+                <img class="sub" src="images/0.png" alt=""> 
+            </li>
+        </ul>
+    </div>
+
+    <script>
+        /*
+
+        */
+        let list=document.getElementsByClassName("list"),
+            aUp=document.getElementsByClassName("time"),
+            aDowm=document.getElementsByClassName("sub"),
+            len=list.length
+
+        for(let i=0;i<len;i++){
+            list[i].num=0
+        }
+
+        function fn(){
+            let date=new Date()
+            let arr=[...date.toLocaleTimeString().slice(0,8).split(":").join("")]
+            
+            arr.forEach((v,index)=>{    //v是数组项  i是下标值
+                if(v/1 !== list[index].num){
+                    aDowm[index].src = `images/${arr[index]}.png` 
+                    list[index].num=v/1
+                    animation(list[index],{
+                        "margin-top":-61
+                    },700,()=>{
+                        list[index].style.marginTop=0
+                        aUp[index].src= `images/${arr[index]}.png`     
+                    })
+                }
+            })
+
+        }
+        setInterval(fn,1000)
+    </script>
+    <script src="animation.js"></script>
+</body>
+</html>

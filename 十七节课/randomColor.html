@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        span{
+            display:inline-block;
+            margin:10px;
+            width:200px;
+            font-size:14px;
+            line-height: 30px;
+            text-align: center;
+            border:1px solide #ccc;
+            border-radius: 10px
+        }
+    </style>
+</head>
+<body>
+    <div id="wrap">
+    </div>
+    <script>
+        let wrap=document.getElementById("wrap")
+        let str=""
+        function randomColor(){
+            let r=Math.floor(Math.random()*256)
+            let g=Math.floor(Math.random()*256)
+            let b=Math.floor(Math.random()*256)
+            let a=Math.random().toFixed(1)
+            str+=`<span style="background-color:rgba(${r},${g},${b},${a})">rgba(${r},${g},${b},${a})</span>`
+            wrap.innerHTML=str
+        }
+        setInterval(randomColor,500)    
+    </script>
+</body>
+</html>

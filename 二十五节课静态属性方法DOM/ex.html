@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        #wrap{
+            position:relative;
+            width:200px;
+            height:200px;
+            background-color:red;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <p class="child">
+            123
+        </p>
+        <span>256</span>
+    </div>
+    <script>
+        let wrap=document.getElementById("wrap")
+        let child=document.getElementsByClassName("child")[0]
+        let span=document.getElementsByTagName("span")[0]
+        console.log(wrap.childNodes);
+        console.log(wrap.children);
+        console.log(wrap.parentNode);
+        console.log(child.offsetParent);
+        console.log(wrap.nodeName);
+        console.log(child.nodeType);
+        console.log(wrap.tagName);
+        console.log(child.getAttributeNode("class"));
+        console.log(child.getAttribute("class"));
+
+        let zhuque1=document.createAttribute("zhuque")
+        // wrap.setAttribute("zhuque1",123)
+        zhuque1.nodeValue="123"
+        wrap.setAttributeNode(zhuque1)
+
+        //创建标签
+        let p=document.createElement("p")
+        p.innerHTML="589"
+        let div=document.createElement("div")
+            div.innerHTML="HAHA"
+        // wrap.appendChild(p)
+        console.log(wrap.cloneNode(false)); //浅克隆
+        console.log(wrap.cloneNode(true));  //深克隆
+        wrap.insertBefore(p,child)
+        wrap.removeChild(child)
+        wrap.replaceChild(div,span)
+    </script>
+</body>
+</html>

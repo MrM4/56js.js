@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>啊啊啊呀</title>
+    <style>
+        *{margin:0;padding:0;}
+        li{list-style:none;}
+        a{text-decoration: none;}
+        section{
+            position: relative;
+            width: 100px;
+            height: 100px;
+            border:1px solid #000;
+        }
+        li{
+            position: absolute;
+            top: 10px;
+            left: 0px;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <ul>
+        </ul>
+    </section>
+    <script>
+        let oSection = document.getElementsByTagName('section')[0],
+            oUl = document.getElementsByTagName('ul')[0],
+            winW = innerWidth,
+            winH = innerHeight;
+        
+        function generateBall(){
+            let oLi = document.createElement('li'),
+                getSize = Math.floor(Math.random() * 60) + 40,
+                speedX = Math.floor(Math.random() * 3) + 4;
+                speedY = Math.floor(Math.random() * 3) + 4;
+                oLi.style.width = oLi.style.height = getSize +'px';
+            getColor (oLi);
+            oLi.style.top = '0px';
+            oLi.style.left = '0px';
+            oUl.appendChild(oLi);  
+            
+            function run(){
+                let maxW = winW - getSize,
+                    maxH = winH - getSize;
+                // if( speedY + parseInt(oLi.style.top) > maxH){
+                //     oLi.style.top = maxH + 'px';
+                //     speedY = -speedY;
+                //     getColor (oLi);
+                // }if( speedY + parseInt(oLi.style.top) < 0){
+                //     oLi.style.top = '0px';
+                //     speedY = -speedY;
+                //     getColor (oLi);
+
+                // };
+                if(speedY + parseInt(oLi.style.top) > maxH ||speedY + parseInt(oLi.style.top) < 0){
+                    speedY = -speedY;
+                    getColor (oLi);
+                    oLi.style.top = Math.max(speedY + parseInt(oLi.style.top),0);
+                    oLi.style.top = Math.min(speedY + parseInt(oLi.style.top),maxH);
+                }
+                if( speedX + parseInt(oLi.style.left) > maxW ||speedX + parseInt(oLi.style.left) < 0){
+                    speedX = -speedX;
+                    getColor (oLi);
+                    oLi.style.left = Math.max(speedX + parseInt(oLi.style.left),0) +'px';
+                    oLi.style.left = Math.min(speedX + parseInt(oLi.style.left),maxW) + 'px';
+                }
+                // if( speedX + parseInt(oLi.style.left) > maxW){
+                //     oLi.style.left = maxW + 'px';
+                //     speedX = -speedX;
+                //     getColor (oLi);
+                // }if( speedX + parseInt(oLi.style.left) < 0){
+                //     oLi.style.left = '0px';
+                //     speedX = -speedX;
+                //     getColor (oLi);
+                // };
+                oLi.style.top = speedY + parseInt(oLi.style.top) + 'px';
+                oLi.style.left = speedX + parseInt(oLi.style.left) + 'px';
+                
+                requestAnimationFrame(run)
+            }
+            requestAnimationFrame(run)
+
+        }
+        oSection.onclick = generateBall;
+        function getColor (ele){
+            let getR = Math.floor(Math.random() * 256),
+                getG = Math.floor(Math.random() * 256),
+                getB = Math.floor(Math.random() * 256);
+            ele.style.backgroundColor = `rgb(${getR},${getG},${getB})`;
+        }
+        window.onresize = function(){
+            winW = innerWidth;
+            winH = innerHeight;
+        }
+    </script>
+</body>
+</html>

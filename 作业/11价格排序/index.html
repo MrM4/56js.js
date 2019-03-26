@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>价格排序</title>
+    <style type="text/css">
+        *{  
+            margin:0;
+            padding:0;
+        }
+        ul,li{list-style:none;}
+        #con{
+            width:900px;
+            padding:30px 30px;
+            margin:100px auto;
+            border:1px solid #ccc;
+        }
+        .sort{
+            padding:10px 0 30px;
+            border-bottom:1px solid #ccc;
+        }
+        .item{
+            float:left;
+            width:205px;
+            padding:10px; 
+            font-size:14px;   
+        }
+        img{
+            width:100%;
+            height:192px;
+        }
+        .detail{
+            display:inline-block;
+        }
+        .price{
+            float:right;
+        }
+        .price em{
+            font-size:18px;
+            font-style: normal;
+            color:red;
+        }
+        .clearfix:after{
+            content: "";
+            display:block;
+            clear:both;
+        }
+        #btn{
+            float:right;
+            padding:10px;
+            background-color:#efefef;
+        }
+        button{
+            padding:5px 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="con" class="clearfix">
+        <ul class="sort clearfix">
+            <li class="item">
+                <img src="images/xh_img1.jpg" alt="">
+                <p class="detail">粉色浪漫系列玫瑰</p>
+                <span class="price">
+                    ￥<em>500</em>
+                </span>
+            </li>
+            <li class="item">
+                <img src="images/xh_img2.jpg" alt="">
+                <p class="detail">粉色浪漫系列玫瑰</p>
+                <span class="price">
+                    ￥<em>100</em>
+                </span>
+            </li>
+            <li class="item">
+                <img src="images/xh_img3.jpg" alt="">
+                <p class="detail">粉色浪漫系列玫瑰</p>
+                <span class="price">
+                    ￥<em>300</em>
+                </span>
+            </li>
+            <li class="item">
+                <img src="images/xh_img4.jpg" alt="">
+                <p class="detail">粉色浪漫系列玫瑰</p>
+                <span class="price">
+                    ￥<em>700</em>
+                </span>
+            </li>
+            <li class="item">
+                <img src="images/xh_img5.jpg" alt="">
+                <p class="detail">粉色浪漫系列玫瑰</p>
+                <span class="price">
+                    ￥<em>130</em>
+                </span>
+            </li>
+            <li class="item">
+                <img src="images/xh_img6.jpg" alt="">
+                <p class="detail">粉色浪漫系列玫瑰</p>
+                <span class="price">
+                    ￥<em>215</em>
+                </span>
+            </li>
+            <li class="item">
+                <img src="images/xh_img7.jpg" alt="">
+                <p class="detail">粉色浪漫系列玫瑰</p>
+                <span class="price">
+                    ￥<em>97</em>
+                </span>
+            </li>
+            <li class="item">
+                <img src="images/xh_img8.jpg" alt="">
+                <p class="detail">粉色浪漫系列玫瑰</p>
+                <span class="price">￥<em>99.5</em></span>
+            </li>
+        </ul>
+        <div id="btn">
+            <button>从低到高</button>
+            <button>从高到低</button>
+        </div>
+    </div>
+    <script>
+        let aLi=document.querySelectorAll("#con li"),
+            aImg=document.getElementsByTagName("img"),
+            aP=document.getElementsByTagName("p"),
+            aSpan=document.getElementsByTagName("span"),
+            aPrice=document.getElementsByTagName("em"),
+            oUp=document.querySelectorAll("#btn button")[0],
+            oDown=document.querySelectorAll("#btn button")[1]
+        let len = aLi.length
+        let arr=[]
+        for(let i=0;i<len;i++){
+            arr[i]={
+                img:aImg[i].src,
+                p:aP[i].innerHTML,
+                span:aSpan[i].innerHTML,
+                price:aPrice[i].innerHTML/1
+            }
+        }
+
+        oUp.onclick=function(){
+            arr.sort((a,b)=>a.price-b.price)
+            show(arr)
+        }
+
+        oDown.onclick=function(){
+            arr.sort((a,b)=>b.price-a.price)
+            show(arr)
+        }
+        function show(arr){
+            for(let i=0;i<len;i++){
+                aLi[i].innerHTML=`
+                    <img src="${arr[i].img}">
+                    <p class="detail">${arr[i].p}</p>
+                    <span class="price">${arr[i].span}</span>`
+            }
+        }         
+    </script>
+</body>
+</html>

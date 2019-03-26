@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    #box {
+      position: relative;
+      height: 70px;
+      width: 328px;
+      margin: 70px 20px;
+
+      padding: 40px;
+
+      background-color: #ff6699;
+      border-radius: 20px;
+
+    }
+
+    #box:before {
+      content: '';
+      position: absolute;
+      left: 180px;
+      top: -50px;
+      width: 3px;
+      height: 60px;
+      background-color: #000;
+      transform: rotate(-15deg);
+
+    }
+
+    #box:after {
+      content: '';
+      position: absolute;
+      left: 215px;
+      top: -60px;
+      width: 4px;
+      height: 70px;
+      background-color: #000;
+      transform: rotate(20deg);
+
+    }
+
+    ul {
+      overflow: hidden;
+      height: 61px;
+      background: #ff3366;
+      border-radius: 10px;
+    }
+
+    ul>li {
+      list-style: none;
+      float: left;
+      width: 41px;
+      height: 122px;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="box">
+    <ul>
+      <li class="list">
+        <img class="time" src="images/0.png" alt="">
+        <img class="sub" src="images/1.png" alt="">
+      </li>
+      <li class="list">
+        <img class="time" src="images/0.png" alt="">
+        <img class="sub" src="images/0.png" alt="">
+      </li>
+      <li>
+        <img src="images/d.png" alt="">
+      </li>
+      <li class="list">
+        <img class="time" src="images/0.png" alt="">
+        <img class="sub" src="images/0.png" alt="">
+      </li>
+      <li class="list">
+        <img class="time" src="images/0.png" alt="">
+        <img class="sub" src="images/0.png" alt="">
+      </li>
+      <li>
+        <img src="images/d.png" alt="">
+      </li>
+      <li class="list">
+        <img class="time" src="images/0.png" alt="">
+        <img class="sub" src="images/0.png" alt="">
+      </li>
+      <li class="list">
+        <img class="time" src="images/0.png" alt="">
+        <img class="sub" src="images/0.png" alt="">
+      </li>
+    </ul>
+  </div>
+  <script src="animation.js"></script>
+  <script>
+    /*
+      需求  现阶段的时间   li的 margin-top (运动框架) 运动后瞬间 需要拉回 并改变里面图片的路径
+
+      先判断  后改变 图片的路径  要给 标签来个自定义属性 存储当前的一个下标
+
+      每次 如果 不相等   li 往上跑61px  更新图片的路径  li瞬间拉回 并且还要更新 第一张图片的路径
+
+
+     */
+    let list = document.getElementsByClassName("list"),
+      aUp = document.getElementsByClassName("time"),
+      aDown = document.getElementsByClassName("sub"),
+      len = list.length;
+
+    for (let i = 0; i < len; i++) {
+      list[i].num = 0
+    }
+
+    function fn() {
+      let arr = [...new Date().toTimeString().slice(0, 8).split(":").join("")]
+      console.log(arr)
+      arr.forEach((v, index) => { //v =>数组项  i =>下标值
+        //012345
+        if (v / 1 !== list[index].num) { //如果当前时间  和 li的标记值不一样
+          aDown[index].src = `images/${v}.png`
+          list[index].num = v / 1
+          animation(list[index], {
+            "margin-top": -61
+          }, 500, () => {
+            list[index].style.marginTop = 0
+            aUp[index].src = `images/${v}.png`
+          })
+        }
+
+      })
+    }
+
+    setInterval(fn, 1000)
+
+
+  </script>
+</body>
+
+</html>

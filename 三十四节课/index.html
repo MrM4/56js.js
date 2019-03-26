@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            
+        */   
+        function data(){
+            return new Promise((res,rej)=>{
+                let xhr=new XMLHttpRequest();
+                    xhr.open=("GET",'http://localhost:8000')
+                    xhr.send(null)
+
+                    xhr.onreadystatechange=function(){
+                        //个人原因
+                        if(xhr.readyState===4){
+                            //服务器原因
+                            if(xhr.status>=200&&xhr.status<300 ||xhr.status===304){
+                                res(xhr.response)
+                            }
+                        }
+                    }
+            })
+        } 
+
+
+        /*
+            cookie 共用
+        */
+
+        document.cookie=""
+    </script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+
+        #wrap{
+            width:200px;
+            height: 200px;
+            background-color:red;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrap"></div>
+    <script>
+        /*
+            symbol  基础值类型  =》充当独一无二的属性名
+
+                避免扩展新增的属性名 与原本的属性名冲突覆盖
+
+                普通值类型  不能挂属性
+
+                Symbol()    参数=》标识符
+                        参数的处理=>字符串      内部会调用toString 方法
+
+
+
+        //利用对象的静态方法
+            Object.defineProperty()
+        */
+        let s1=Symbol()
+
+
+        /*
+            Set   es6新的数据结构       类似于数组
+                参数 可以放有迭代界都的对象 interator接口
+
+                set1.add()  添加
+
+                set1.delete() 删除
+
+                set1.has()  判断是否存在某个数据
+
+                set1.clear()    清除所有成员
+        
+        */
+
+
+        /*
+            iterator
+
+                迭代器：接口 
+                1.为数据结构 提开工访问接口
+                2.数据有序排列
+                3.可以被for of使用 ...
+        
+        */
+
+
+        /*
+            Map     和对象类似，键值对形式
+
+            Map.size()
+            set(key,value)
+            get(key)
+
+            has()
+            delete()
+        
+        */
+    
+        let set1 =new Set()
+    </script>    
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    span{
+      position: absolute;
+      display: inline-block;
+      border-radius: 50%;
+      background-color: #000;
+    }
+  </style>
+</head>
+<body>
+  
+  <script>
+    let maxX
+    let maxY
+    let widthHeight
+
+    document.onclick = function () {
+      let boll = document.createElement('span');
+      widthHeight = Math.random() * 40 + 20
+      
+      boll.style.width = widthHeight + 'px'
+      boll.style.height = widthHeight + 'px'
+
+      maxX = document.documentElement.clientWidth - widthHeight
+      maxY = document.documentElement.clientHeight - widthHeight
+
+      let speedX = Math.random() * 9 + 1
+      let speedY = Math.random() * 9 + 1
+
+      let runX = 0
+      let runY = 0
+
+      run()
+      function run () {
+         runX += speedX
+         runY += speedY
+         
+         runX = Math.min(maxX,runX)
+         runX = Math.max(0,runX)
+        
+         runY = Math.min(maxY,runY)
+         runY = Math.max(0,runY)
+         
+         let r = Math.random() * 255
+         let g = Math.random() * 255
+         let b = Math.random() * 255
+         if(runX === 0 || runX === maxX){
+          speedX = -speedX
+          boll.style.backgroundColor = `rgb(${r},${g},${b})`
+         }
+         if(runY === 0 || runY === maxY){
+          speedY = -speedY
+          boll.style.backgroundColor = `rgb(${r},${g},${b})`
+         }
+         boll.style.top = runY + "px"
+         boll.style.left = runX + "px"
+         requestAnimationFrame(run)
+      }
+      document.body.appendChild(boll)
+    }
+
+    window.onresize = function () {
+      maxX = document.documentElement.clientWidth - widthHeight
+      maxY = document.documentElement.clientHeight - widthHeight
+    }
+  </script>
+</body>
+</html>

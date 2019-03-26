@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="Anthor" content="FengYu">
+	<title>无缝轮播 折腾一下</title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
+
+		li {
+			list-style: none;
+		}
+
+		img {
+			vertical-align: top;
+		}
+
+		#wrap {
+			position: relative;
+			width: 640px;
+			height: 360px;
+			margin: 50px auto;
+			overflow: hidden;
+		}
+
+		#wrap .pic {
+			position: absolute;
+			top: 0;
+			left: 0;
+			height: 100%;
+			width: 1000%;
+		}
+
+		.pic li {
+			float: left;
+		}
+
+
+		.tab {
+			position: absolute;
+			bottom: 20px;
+			left: 50%;
+			margin-left: -100px;
+			width: 150px;
+			height: 30px;
+			padding-left: 10px;
+			background: rgba(0, 0, 0, .2);
+			border-radius: 15px;
+			transition: .5s;
+			transform: scale(.8);
+		}
+
+		.tab:hover {
+			background: rgba(0, 0, 0, .5);
+			transform: scale(1.2);
+		}
+
+		.tab li {
+			width: 20px;
+			height: 20px;
+			float: left;
+			background: #fff;
+			border-radius: 50%;
+			margin: 5px 10px 0 0;
+			opacity: .35;
+			cursor: pointer;
+		}
+
+		.tab li.on {
+			position: absolute;
+			top: 0px;
+			background: #f60;
+			opacity: 1;
+			z-index: 99;
+		}
+
+		#wrap>div {
+			position: absolute;
+			top: 50%;
+			margin-top: -30px;
+			width: 30px;
+			height: 60px;
+			background: rgba(0, 0, 0, .2);
+			text-align: center;
+			font-size: 18px;
+			line-height: 60px;
+			color: #fff;
+			cursor: pointer;
+		}
+
+		#wrap>div:hover {
+			background: rgba(0, 0, 0, .5);
+		}
+
+		.next {
+			right: 0;
+		}
+	</style>
+	<script src="./animation.js"></script>
+</head>
+
+<body>
+	<div id="wrap">
+		<ul class="pic">
+			<li>
+				<img src="img/1.png">
+			</li>
+			<li>
+				<img src="img/2.png">
+			</li>
+			<li>
+				<img src="img/3.png">
+			</li>
+			<li>
+				<img src="img/4.png">
+			</li>
+			<li>
+				<img src="img/5.png">
+			</li>
+			<li>
+				<img src="img/1.png">
+			</li>
+		</ul>
+		<ul class="tab">
+			<li class="on"></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+		<div class="prev">
+			<</div>
+				<div class="next">></div>
+		</div>
+</body>
+
+</html>

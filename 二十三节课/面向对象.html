@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        面向对象的三个特征
+            封装性：
+            继承性：可以重复使用，可扩展
+            多态性：根据参数的不同，做出不同的反馈
+
+            通过new 构造\类 生成的为类的实例，实例也是一个对象
+
+            实例的__proto__指向父类的原型对象     prototype
+    */
+    function Person(opt){       //个性化需求     一般放属性       类
+        this.name=opt.name
+        this.age=opt.name
+        this.sex=opt.sex
+    }
+
+    Person.prototype={          //共性  一般放方法          原型
+        eat(value){alert(`${this.name}吃了${value}`)},//eat:function(value){},
+        play(value){alert(`${this.name}玩了${value}`)}
+    }
+
+    var person1=Person({
+        name:"朱雀",
+        age:"15",
+        sex:"女"
+    })
+
+    var person2=new Person({        //类的实例
+        name:"雀雀",
+        age:"18",
+        sex:"美女",
+    })
+
+    console.log(person1)
+    console.log(person2)
+    person2.eat("饭")
+
+
+    /*
+        原型链     万物皆对象
+            对象都是被 对应的类 实例出来的
+     */
+</script>
+</body>
+</html>

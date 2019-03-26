@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>点击切换</title>
+    <style>
+        #box{
+            width:690px;
+            height:1035px;
+            margin:100px auto;
+        }
+    </style>
+</head>
+<body>
+    <div id=box><img src="img/01.jpg" alt=""></div>
+    <script>
+        let i=0
+        let oBox=document.getElementById("box")
+        let img=document.getElementsByTagName("img")
+        oBox.onclick=function(){
+            i++
+            img[0].src=`img/0${i}.jpg`
+            if(i==3){
+                i=0
+            } 
+        }
+    </script>
+</body>
+</html>

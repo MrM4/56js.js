@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul,
+        ol {
+            list-style: none;
+        }
+
+        #con {
+            position: relative;
+            width: 640px;
+            height: 360px;
+            margin: 100px auto;
+            overflow: hidden;
+        }
+
+        .pic {
+            position: absolute;
+            width: 1000%;
+            height: 100%;
+        }
+
+        ul>li {
+            float: left;
+        }
+
+        .point {
+            position: absolute;
+            top: 310px;
+            left: 245px;
+            width: 160px;
+            height: 30px;
+            background-color: #333;
+            opacity: .6;
+            border-radius: 15px;
+        }
+
+        .point>li+li {
+            cursor: pointer;
+            width: 20px;
+            height: 20px;
+            margin-left: 10px;
+            margin-top: 5px;
+            background-color: #ccc;
+            opacity: .5;
+            border-radius: 50%;
+        }
+
+        p {
+            position: absolute;
+            top: 155px;
+            width: 30px;
+            height: 50px;
+            background-color: #000;
+            opacity: .5;
+            color: azure;
+            font-size: 33px;
+            text-align: center;
+            line-height: 50px;
+        }
+
+        .right {
+            right: 0px;
+        }
+
+        .on {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            top: 5px;
+            left: 10px;
+            background-color: orange;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="con">
+        <ul class="pic">
+            <li>
+                <img src="img/1.png" alt="">
+            </li>
+            <li>
+                <img src="img/2.png" alt="">
+            </li>
+            <li>
+                <img src="img/3.png" alt="">
+            </li>
+            <li>
+                <img src="img/4.png" alt="">
+            </li>
+            <li>
+                <img src="img/5.png" alt="">
+            </li>
+            <li>
+                <img src="img/1.png" alt="">
+            </li>
+        </ul>
+        <ul class="point">
+            <li class="on"></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+        <p class="left">
+            <</p> <p class="right">>
+        </p>
+    </div>
+    <script src="animation.js"></script>
+    <script>
+        let oPic = document.querySelector(".pic"),
+            oLi = document.querySelectorAll(".point>li+li"),
+            on = document.getElementsByClassName("on")[0]
+        aCon = document.getElementById("con"),
+            oBtn_left = document.getElementsByTagName("p")[0],
+            oBtn_right = document.getElementsByTagName("p")[1],
+            num = 0,
+            len = oLi.length,
+            wid = 640
+
+        function move() {
+            num++
+            animation(oPic, {
+                data: {
+                    left: -num * wid
+                },
+                speedOpt: {
+                    ease: "Back",
+                    speed: 2
+                }
+            }, 500, () => {
+                if (num >= len) {
+                    oPic.style.left = 0;
+                    num = 0
+                }
+            })
+
+            if (num >= len) {
+                animation(on, {
+                    data: {
+                        oapcity: 0
+                    }
+                }, 250, () => {
+                    on.style.left = 10 + "px"
+                    animation(on, {
+                        data: {
+                            opacity: 1
+                        }
+                    }, 250)
+                })
+            } else {
+                animation(on, {
+                    data: {
+                        left: num * 30 + 10
+                    }
+                }, 500)
+            }
+        }
+
+
+        for (let i = 0; i < len; i++) {
+            oLi[i].onclick = function () {
+                if (Math.abs(i - num) > 1) {
+                    animation(on, {
+                        data: {
+                            opacity: 0
+                        }
+                    }, 250, () => {
+                        on.style.left = i * 30 + 10 + "px"
+                        animation(on, {
+                            data: {
+                                opacity: 1
+                            }
+
+                        }, 250)
+                    })
+                } else {
+                    animation(on, {
+                        data: {
+                            left: i * 30 + 10 + "px"
+                        }
+                    }, 500)
+                }
+                animation(oPic, {
+                    data: {
+                        left: -i * wid
+                    },
+                    speedOpt: {
+                        ease: "Back",
+                        speed: 2,
+                    }
+                }, 500)
+                num = i
+            }
+        }
+
+        oBtn_left.onclick = function () {
+            
+            if (num === 0) {
+                num = len
+                oPic.style.left = -len * wid
+                animation(on, {
+                    data: {
+                        opacity: 0
+                    }
+                }, 250, () => {
+                    on.style.left = num* 30 + 10 + "px"
+                    animation(on, {
+                        data: {
+                            opacity: 1
+                        }
+                    }, 250)
+                })
+            }
+            num--
+            animation(oPic, {
+                data: {
+                    left: -num * wid
+                },
+                speedOpt: {
+                    ease: "Back",
+                    speed: 2,
+                }
+            }, 500)
+
+            if (num !== len - 1) {
+                animation(on, {
+                    data: {
+                        left: num * 30 + 10 + "px"
+                    }
+                }, 500)
+            }
+
+        }
+
+        oBtn_right.onclick = function () {
+            num++
+            if (num >= len) {
+                animation(on, {
+                    data: {
+                        opacity: 0
+                    }
+                }, 250, () => {
+                    on.style.left = "10px"
+                    animation(on, {
+                        data: {
+                            opacity: 1
+                        }
+                    }, 250)
+                })
+            }else{
+                animation(on,{
+                    data:{
+                        left:num*30+10
+                    }
+                },500)
+            }    
+
+            animation(oPic, {
+                data: {
+                    left: -num * wid
+                },
+                speedOpt: {
+                    ease: "Back",
+                    speed: 2,
+                }
+            }, 500,()=>{
+                if(num>=len){
+                    num=0
+                    oPic.style.left="0px"
+                }
+            })
+        }
+
+        let time = setInterval(move, 1000)
+
+        aCon.onmouseenter = function () {
+            clearInterval(time)
+        }
+
+        aCon.onmouseleave = function () {
+            time = setInterval(move, 1000)
+        }
+    </script>
+
+</body>
+
+</html>

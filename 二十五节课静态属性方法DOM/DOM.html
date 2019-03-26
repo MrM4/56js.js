@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+
+
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <!--nihao-->
+        <p id="child">123</p>
+        <span>235</span>
+    </div>
+    <script>
+        /*
+            DOM 文档对象模型    js操作网页的接口，把网页转为一个js对象 用js进行网页内容，结构，样式的操作
+
+            DOM树      DOM最小的组成单位  节点
+
+
+            //节点类型
+            document    顶层节点
+            DOCTYPE     标签
+            Element     标签节点    1
+            Attribute   属性节点    2
+            text        文本节点    3
+            comment     注释节点
+            documentFragment    文档片段节点（不属于文档树）
+        */
+
+        let wrap=document.getElementById("wrap")
+        console.log(wrap.children[0])
+        console.log(child.parentNode)
+        console.log(child.offsetParent)
+        console.log(wrap.childNodes[3].nodeName);
+
+        /*
+            //获取节点
+            ele.childNodes      获取对象下所有的节点    ie里面只获取对象下的标签节点
+       !!!  ele.children        获取对象下的所有标签节点  动态获取
+
+
+          * ele.parentNode      返回ele对象的父节点(标签节点)，没有兼容问题
+            
+          * ele.offsetParent    返回ele对象的定位父节点， 如果没有就会返回<body></body>
+
+            ele.nodeName        返回ele节点名字，返回的标签节点，会返回标签的大写名字
+
+            ele.nodeType        返回节点类型对应的序号      1.标签节点  2.属性节点  3.文本节点
+
+            ele.tagName         返回标签对象的标签名    只能返回标签节点
+
+            获取属性节点方法
+            ele.getAttributeNode("id")  返回的内容是属性节点对象
+            ele.getAttribute()      获取的是属性值=>字符串
+
+            创建一个属性节点
+            document.creatAttribute("zhuque")   只能有一个参数=>生成的属性
+            wrap.setAttribute("zhuque",123)      前面属性名，后边属性值
+            wrap.setAttributeNode(zhuque)
+
+
+
+
+            了解即可的部分
+
+            ele.firstChild      返回第一个子节点，不仅限于标签节点  =》ie返回第一个子元素节点
+
+            ele.firstElementChild  返回第一个子元素节点，只兼容主流浏览器
+
+            ele.lastChild           返回最后一个子节点
+
+            ele.lastElementChild    返回最后一个子元素节点
+
+            ele.nextSibling         下一个兄弟节点
+
+            ele.nextElementSibling  下一个兄弟元素节点  只兼容主流浏览器
+
+            ele.previousSibling     上一个兄弟节点
+
+            ele.previousElementSibling      上一个兄弟元素子节点，没有返或none
+
+*/
+
+        let p = document.createElement("p")
+        wrap.appendChild(p)
+        /*
+            操作标签对象
+
+            1.创建标签对象
+                let p=document.createElement("p")
+            2.添加到目标对象中
+                div.appendChild(p)      //对象内 已经有节点对象绑定了事件，要操作这些对象
+                div.innerHTML+="<p></p>"//不需要对标签对象进行操作
+
+            //创建文档片段节点
+                var domFrag=document.createDocumentFragment()
+                    domFrag.appendChild(p)
+                    domFran.appendChild(span)
+
+                    wrap.appendChild(domFrag)
+
+            重构 浏览器要改变元素的一些外观时所触发的一些行为
+                颜色    背景颜色    改变外观
+
+            回流 //比较耗费资源
+                位置    大小
+
+        操作标签节点方法
+            cloneNode   克隆节点
+
+            wrap.cloneNode(false)   浅克隆false     复制当前节点
+            wrap.cloneNode(true)    深克隆true     复制当前节点和所有后代节点
+
+            insertBefore(nav,p)      添加到对应参数节点对象的前面       接收两个参数
+            nav放到p的前面
+
+            fatherEle.removeChild()       父级元素移除子节点
+
+            replaceChild(newChild,Child)      更换元素节点    接收两个参数
+        */    
+    </script>
+</body>
+</html>

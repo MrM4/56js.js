@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            内置时间对象 
+
+                date.getFullYear()      //返回当前的年份
+                date.getMonth()         //返回当前的月份    从零计次
+                date.getDay()           //返回当前的星期
+                date.getDate()          //返回当前的日期
+                date.getHours()         //时
+                getMinutes()            //分
+                getSeconds()            //秒
+                date.getMilliseconds()  //毫秒
+
+                date.toLocaleString()   //返回一个年月日时分秒的字符串  2019-3-3 12:56:35
+                date.toLocaleDateString()   //返回一个年月日            2019-3-3
+                date.toTimeString()     //date.toTimeString()
+
+                date.getTimezoneOffset()    //世界时间-当前时间 返回一个分钟值
+                date.getUTCHours()          //世界时
+                date.getUTCMinutes()        //世界当前的分钟值
+
+                var date1=new Date(2019,2,03,13,10,44)  //传参
+        */
+        var date = new Date()   //事件对象
+        console.log(date)
+        console.log(date.getFullYear()) 
+        console.log(date.getMonth())
+        console.log(date.getDay())
+        console.log(date.getDate())
+        console.log(date.getHours())
+        console.log(date.getMinutes())
+        console.log(date.getSeconds())
+        console.log(date.getMilliseconds())
+
+        var time=date.getTime()         //当前时间距离1970年1月1日零时过去了多少毫秒    计算机元年
+        console.log(time)
+        
+        document.onclick=function(){
+            var date1=new Date(2019,2,03,13,10,44)
+            console.log(date1)
+        }
+
+        var year=date.getYear()         //1900年到现在年份的一个差值 单位是 年 
+        console.log(year)
+
+        console.log(date.toLocaleString())  //返回一个年月日时分秒的字符串  2019-3-3 12:56:35
+        console.log(date.toLocaleDateString())  //返回一个年月日            2019-3-3
+        console.log(date.toTimeString())        //date.toTimeString()
+        console.log(date.getTimezoneOffset())   //世界时间-当前时间 返回一个分钟值
+        console.log(date.getUTCHours())         //世界时
+        console.log(date.getUTCMinutes())       //世界当前的分钟值
+    </script>
+</body>
+</html>

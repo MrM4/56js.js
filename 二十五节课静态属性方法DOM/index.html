@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            静态属性/方法
+                只提供给类使用，实例不能使用
+
+            //es6 只能挂静态方法，不能挂静态属性
+            es5     类这个函数 .操作（挂自定义属性）只能 类使用 实例没发访问到
+        */
+
+        //es5
+            /*function Zhuque(opt){
+                this.name=opt.name
+            }
+
+            Zhuque.prototype={
+                constructor:Zhuque,
+                sayname(){console.log(this.name)},
+            }
+
+            Zhuque.queque=function(){
+                console.log("私有方法")
+            }
+            Zhuque.queque1=123
+
+            var zhuque1=new Zhuque({name:"朱雀"})
+            console.log(zhuque1);
+            zhuque1.queque()    //类的点操作，实例无法访问
+            console.log(zhuque1.queque1)
+        */
+
+     /*
+     es6写法      //es6 只能挂静态方法，不能挂静态属性*/
+
+            class Zhuque{
+                constructor(opt){//个性化设置
+                    this.name=opt.name
+                }
+               //公有方法
+                sayname(){console.log(this.name)}
+
+                static sayhello(){console.log("只能类来调用")}  //static 开头 后面的方法属于静态方法
+             }
+
+
+
+        /*
+            es6继承
+        */
+            class Baby extends Zhuque{
+                constructor(opt){
+                    super(opt)          //super在这必须调用依次 只能在这里立即执行
+                                        //指向最近的一个类（父类），并让子类具备this
+                    //super,this.sayname()//在这的意思=》父类的.prototype
+                    this.age=opt.age    //扩展的属性
+                }
+
+                //扩展的公有方法
+                sayage(){console.log(this.age)}
+
+                //static 开头 后面的方法属于静态方法
+                static sayhi(){console.log("只能类来调用")}
+            }
+
+            let baby1 = new Baby({name:"小雀雀",age:"3"})
+            console.log(baby1)
+            Baby.sayhello()
+
+        //  super(opt)    的作用
+        /*
+            包装对象
+            基础值类型       不能挂在自定义属性
+        */
+    </script>
+</body>
+</html>

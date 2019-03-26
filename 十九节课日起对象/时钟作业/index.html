@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        #wrap{
+            position:relative;
+            width:400px;
+            height: 400px;
+            margin:100px auto;
+            border-radius:50%;
+            background-image:url("images/01.png");
+            background-size:400px;
+            transform:rotate(1.5deg)
+        }
+        span{
+            position:absolute;
+            display:inline-block;
+            transform-origin: bottom;
+        }
+        .hour{
+            width:2px;
+            height:148px;
+            background-color:red;
+            right:50%;
+            top:12%;
+            transform:rotate(0deg);   
+        }
+        .minute{
+            width:1px;
+            height:145px;
+            background-color:blueviolet;
+            right:50%;
+            top:13%;
+            transform: rotate(0deg);
+        }
+        .second{
+            width:2px;
+            height:167px;
+            background-color:cadetblue;
+            right:50%;
+            top:8%;
+            transform: rotate(0deg);
+        }
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <span class="hour"></span>
+        <span class="minute"></span>
+        <span class="second"></span>    
+    </div>
+    
+    <script>
+        /*
+            获取当前时间，时分秒，将时间转换成弧度单位
+        */
+        let aSpan=document.querySelectorAll("span"),
+            PI=Math.PI
+            rad=PI/30    
+        function fn(){
+            let date=new Date()
+            let hour=date.getHours()
+            let minute=date.getMinutes()
+            let second=date.getSeconds()
+            aSpan[2].style.transform=`rotate(${second*6}deg)` 
+            aSpan[1].style.transform=`rotate(${(minute+second/60)*6}deg)`
+            aSpan[0].style.transform=`rotate(${(hour+minute/60)*30}deg)`  
+
+        }
+        fn()
+        setInterval(fn,1000)
+    </script>
+</body>
+</html>

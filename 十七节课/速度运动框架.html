@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        #wrap{
+            width:800px;
+            height:200px;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrap"></div>
+    <script>
+        //兼容写法
+        window.requestAnimationFrame=window.requestAnimationFrame||function(fn){
+                return setTimeout(fn,1000/60)
+        }//请求动画
+
+        //clearTimeout()        cancelAnimationFrame()      //取消动画帧
+        window.cancelAnimationFrame=window.cancelAnimationFrame||clearTimeout
+
+
+        function getStyle(ele){                
+            return ele.currentStyle || getComputedStyle(ele)
+        } 
+        /*
+            需要一个函数 接收四个变量     第一个对象  第二个变化的属性    
+                                        第三个变化目标值    第四个变化量
+        */
+        var wrap=document.getElementById("wrap");
+        function animation(ele,attr,target,index){
+            target=parseFloat(target)
+            index=parseFloat(index)
+            var bAttr=parseFloat(getStyle(ele)[attr])
+            if(target<bAttr){
+                index=-index
+            }
+            run()
+            function run(){
+                bAttr+=index
+                if(target>bAttr ? bAttr>=target:bAttr<=target){
+                    bAttr=target
+                }else{
+                    requestAnimationFrame(run)
+                }
+                ele.style[attr]=bAttr+"px"
+            }   
+        }
+        animation(wrap,"height","800px",5)
+    </script>
+</body>
+</html>

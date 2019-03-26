@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function Person1(opt) {
+            this.name = opt.name
+            this.age = opt.age
+        }
+        // Person1.prototype={
+        //     constructor:Person1,
+        // }
+
+        function Person2(opt){
+            //当前this指向new Person2返回的默认对象
+            Person1.call(this,opt)
+            this.sex=opt.sex
+        }
+
+        //原型的继承方法
+
+        //1 子类的原型等于父类的实例
+        Person2.prototype=new Person1({})//=>p1.__proto__=>Person1.prototype
+
+        //2 构造中间商
+        function Middle(){
+
+        }
+        Middle.prototype=Person1.prototype
+        Person2.prototype=new Middle()
+
+        //原型扩展
+        Person2.prototype.play=function(){
+            console.log("玩")
+        }
+
+        //不通过原型链，单纯的搬运
+            for(var key in Person1.prototype){
+                Person2.prototype[key]=Person1.prototype[key]
+            }
+
+
+        var p1= new Person1({ name: "雀雀",age:"18"})
+
+        var p2= new Person2({ name: "朱雀",age:"18",sex:"女"})
+        console.log(p1)
+        console.log(p2)
+        p2.play()
+
+
+        /*
+            原型继承
+
+
+            //in 运算符     查遍所有的对象原型上的所有方法和属性     console.log("name" in p1)
+
+            x.hasOwnProperty("")  判断是否是自身属性，不会去原型链上查找
+
+            instanceof      p1 instanceof Person1   判断p1是否存在于Person1的原型链上
+        */    
+
+
+
+        /*
+            es6写法   类和原型的写法
+                es6的公有内不能写公有属性，只能写方法
+                es6必须使用new操作生成实例
+                class Person2{
+                    constructor(opt){  //个性化设置，私有属性
+                        this.name=opt.name
+                    };
+                    //公有方法
+                    sayname(value){console.log(this.name)}
+                }
+
+                let p2=new Person2("")
+
+            继承写法    Person3继承Person2
+                class Person3 extends Person2{
+                    constructor(name,age){
+                        super(name,age) //
+                        this.age=age
+                    }
+                    //原型扩展
+                    playgame(){console.log("玩")};
+                }
+
+        */
+
+
+
+        /*
+            深浅拷贝
+                浅拷贝  只复制第一层里面的引用型数据 还是交出了内存地址 还会影响到原来的对象
+
+
+                深拷贝  里里外外全部拷贝，完全复制，不拿引用型数据地址
+
+                let obj={
+                    name:"哈哈",
+                    a:[1,2,3,function que(){},[3,4]],
+                    }
+
+
+                 //浅拷贝
+                 let obj2={
+                        name:obj.name,
+                        a:obj.a
+                    }
+
+                 //深拷贝
+                function extend(obj){
+                    var obj1={}
+                    if(obj instansof Arry){
+                        obj1=[]
+                    }
+                    for(var key in obj){
+                        var value=obj[key]
+                        if(typeof value==="object"&& value!==null){ //当前这条数据 为引用型
+                            obj1[key]=extend(value)
+                        }else{
+                            obj1[key]=value
+                            }
+                    }
+                    return obj1
+                }
+        */
+    </script>    
+</body>
+</html>

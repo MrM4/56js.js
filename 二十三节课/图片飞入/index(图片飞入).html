@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        .con{
+            position:relative;
+            width:500px;
+            height: 500px;
+            border:1px solid #ccc;
+            margin:100px auto;
+        }
+        .img{
+            position:absolute;
+            left:0px;
+            top:0px;
+            width:50px;
+            height:50px;
+            background-image:url("1.png");
+        }
+    </style>
+</head>
+<body>
+    <div class="con">
+
+    </div>
+    <script src="animation.js"></script>
+    <script>
+        /*
+            00  01  02  03  04  05  06  07  08  09
+            10  11  12  13  14  15  16  17  18  19
+        */
+        let aCon=document.getElementsByClassName("con")[0],
+            oImg=document.getElementsByClassName("img"),
+            len=100,
+            num=0,
+            arr=[]
+
+        //数组存储图片位置信息
+        for(let i=0;i<len;i++){
+            arr[i]=i
+        }
+        //随机数组  
+        arr.sort((a,b)=>Math.random()-0.5)
+
+        function run(){
+            let value=arr[num]//取数组值
+            //小方块定位置
+            let left=value%10*50+"px"
+            let top=Math.floor(value/10)*50+"px"
+            aCon.innerHTML+="<p class='img'></p>"
+            //img位置
+            oImg[num].style.backgroundPosition=`${-value%10*50}px ${-Math.floor(value/10)*50}px`
+            animation(oImg[num], {
+            data: {
+                top,
+                left
+                },
+            speedOpt: {
+                ease: "linear", //存运动模式
+                speed: 1 //存运动方式
+                }
+            },150, function () {
+                num++
+                if(num>=100)return
+                run()
+            }) 
+        }
+        run()
+    </script>
+</body>
+</html>

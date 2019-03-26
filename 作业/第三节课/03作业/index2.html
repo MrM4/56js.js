@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+    <style>
+        #box{
+            width:250px;
+            height:1000px;
+            margin: 100px auto;
+        }
+        #con{
+            width:200px;
+            height:200px;
+        }
+        .btn{
+            margin-left:190px;
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <textarea name="input" id="input" cols="30" rows="10"></textarea>
+        <button class="btn">提交</button>
+        <div id="con"></div>
+    </div>
+    
+    <script>
+        let oInput=document.getElementById("input")
+        let oBut=document.querySelector("button") 
+        let oCon=document.getElementById("con")
+        oBut.onclick=function(){
+           oCon.innerHTML+= oInput.value+"</br>"
+           oInput.innerHTML=""
+        }   
+    </script>    
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin:0px;
+            padding:0px;
+            }
+        ul,ol{
+            list-style:none;
+        }
+        span{
+            display:inline-block;
+            width:100px;
+            height:50px;
+            border:1px solid #ccc;
+            margin:10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+    </div>
+    <script>
+        let wrap=document.querySelector("box")
+         //随机颜色
+        function randomColor(num){
+            let str=""
+            for(let i=0;i<num;i++){
+                let r=Math.floor(Math.random()*256)
+                let g=Math.floor(Math.random()*256)
+                let b=Math.floor(Math.random()*256)
+                let a=Math.random().toFixed(1)
+                str+=`<span style="background-color:rgba(${r},${g},${b},${a}")></span>`
+            }    
+            document.body.innerHTML=str    
+        }
+        //setInterval(randomColor,1000,50)
+        
+        /*
+            Math对象 javascript内置对象 window的一个属性
+                Math.PI 
+                Math.E  自然对数
+                Math.abs()  取绝对值
+
+                Math.asin() 反正弦
+                Math.acos() 反余弦
+                Math.sin()  正弦
+                Math.cos()  余弦
+                Math.tan()  正切        参数只能是弧度值 2π=360
+
+                Math.ceil() 向上取整    1.1=>2
+                Math.round()    四舍五入
+                Math.floor()    向下取整    1.5=>1
+                Math.max()  取最大值    Math.max(3,5,45)
+                Math.min()  取最小值
+                Math.random()   随机数 0~1 左闭右开
+
+                    function randomNum(a,b){
+                        return (Math.floor(Math.random()*(b-a+1))+a)
+                    }
+
+                    //随机颜色
+                    function randomColor(num){
+                        let r=Math.floor(Math.random()*256)
+                        let g=Math.floor(Math.random()*256)
+                        let b=Math.floor(Math.random()*256)
+                        let a=Math.random().toFixed(1)
+                        
+                    }
+
+                pow(m,n)幂运算  m的n次方
+                num.toFixed()  保留几位小数
+
+        */
+
+        /*
+            定时器
+
+                一次性定时器
+                setTimeout()
+                    第一个参数，回调函数
+                    第二个参数  隔多久执行ms
+                    第三个参数  回调函数的传参
+
+                循环定时器
+                setInterval()
+
+                清除定时器
+                    1、通过定时器的编号,从上往下的顺序和执行的时间的先后顺序无关
+                    2、通过定时器的名字
+                    clearTimeout()
+                    clearInterval()                    
+        */
+        /*
+            同步和异步
+                
+                js 单线程语言   同步
+        
+        */
+    </script>    
+</body>
+</html> 

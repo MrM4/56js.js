@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #box{
+            width:200px;
+            height:200px;
+            background-color:blanchedalmond;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="box" name="box">1</div>
+    <div class="box" name="box">2</div>
+    <div class="box" name="box">3</div>
+    <div class="box" name="box">4</div>
+    <div class="box">5</div>
+    <div class="box">6</div>
+    <script>
+        let aBox=document.getElementsByClassName(" box") //HTMLcollection  类数组
+        let aBox1=document.getElementsByTagName("div")
+        let nBox=document.getElementsByName("box")
+        let Box=document.querySelectorAll(".box")    
+        /*
+            var声明变量缺点
+                1.先使用，后声明，会返回undefined
+                2.重复声明，后边的会覆盖前边的
+                3.不声明=》会报错
+                4.不声明，直接赋值 a=2; console.log(a),会自动变为全局变量
+            var在全局声明的变量会自动挂载到window的属性里，而let，和const不会
+        */
+        
+
+        /*
+            获取元素的其他方法
+                
+                1.通过类名获取元素
+                document.getElementsByClassName(" box")  //不兼容IE8及以下
+
+                2.通过标签名获取元素
+                document.getElementsByTagName("")
+
+                3.通过name属性获取元素
+                document.getElementsByName("")           //不涉及兼容问题
+
+                4.通过css选择器方法获取元素                //不兼容IE8以下，性能比较慢，通篇查血
+                document.querySelector("")               //单个节点，只找第一个
+                document.querySelectorAll("")            //集合
+
+                5.
+                document.documentElement     html
+                document.body                body
+                document.title                title
+        */
+
+            let box1=document.getElementById("box")
+            box1.onclick=function(){
+                box1.innerHTML="zhuque"
+                console.log(box1.id)
+                console.log(box1.ClassName)
+            }
+        /*
+            属性
+            console.dir(box1) 查看box1的所有属性
+            有一些属性默认有值，有一部分未赋值前 默认值为null
+
+
+            获取类名和id名的方式
+            console.log(box1.id)
+            console.log(box1.ClassName)
+
+            src返回绝对路径
+            颜色除一些关键词外返回的都是rgb类型
+        */
+    </script>    
+</body>
+</html>

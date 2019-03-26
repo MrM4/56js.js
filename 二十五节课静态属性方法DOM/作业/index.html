@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport"
+              content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Document</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+            }
+
+            ul, ol {
+                list-style: none;
+            }
+            #bgc{
+
+                width:850px;
+                height:650px;
+                border:1px solid #ccc;
+                border-radius:20px;
+                margin:100px auto;
+                background-color:#eee;
+                box-shadow: 0 0 10px #aaa ;
+            }
+            .con{
+                position:relative;
+                width:100%;
+                height:100%;
+            }
+            .con>div{
+                position:absolute;
+                top:75px;
+                width:350px;
+                height:500px;
+                border:1px solid #ccc;
+                border-radius:20px;
+                background-color: #fff;
+
+            }
+            .con .left{
+                left:75px;
+                top:75px;
+            }
+            .con .right{
+                right:71px;
+                background-color: #aaa;
+            }
+            .city{
+                margin:10px;
+            }
+            .tit{
+                color:goldenrod;
+            }
+            .city span{
+                cursor: pointer;
+                display:inline-block;
+                margin:0 5px;
+            }
+            .city span+span:hover{
+                color:red;
+            }
+            .l-box{
+                width:100%;
+                margin-top:50px;
+            }
+            .text{
+                display:inline-block;
+                width:100px;
+                height:20px;
+                margin:10px;
+                text-align: center;
+                line-height:20px;
+                background-color: #eee;
+                border-radius:5px;
+            }
+            i{
+
+            }
+        </style>
+    </head>
+    <body>
+        <div id="bgc">
+            <div class="con">
+                <div class="left">
+                    <p class="city">
+                        <span class="tit">热门城市：</span>
+                        <span>北京</span>
+                        <span>伦敦</span>
+                        <span>纽约</span>
+                        <span>悉尼</span>
+                        <span>东京</span>
+                    </p>
+                    <div class="l-box">
+
+                    </div>
+                </div>
+                <div class="right">
+                    <div class="r-box">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            let oSpan=document.querySelectorAll(".city span+span"),
+                lBox=document.getElementsByClassName("l-box")[0],
+                rBox=document.getElementsByClassName("r-box")[0],
+                len=oSpan.length
+
+            for(let i=0;i<len;i++){
+                oSpan[i].onclick=function(){
+                    add(i)
+                }
+            }
+
+            function add(j){
+                let spans=document.createElement("span")
+                    spans.innerText=oSpan[j].innerText+ " |"
+                    document.createAttribute("class")
+                let x=document.createElement("i")
+                    x.innerHTML="X"
+                    spans.appendChild(x)
+                    spans.setAttribute("class","text")
+                lBox.appendChild(spans)
+            }
+        </script>
+    </body>
+</html>

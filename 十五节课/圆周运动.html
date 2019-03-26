@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>圆周运动</title>
+    <style>
+    *{
+        margin:0;
+        padding:0;
+    }
+    #wrap{
+        position:relative;
+        width:400px;
+        height: 400px;
+        margin:100px auto;
+        border:1px solid red;
+        border-radius:50%;
+    }
+    p{
+        position:absolute;
+        width:40px;
+        height:40px;
+        border-radius:50%;
+    }
+    img{
+        position:absolute;
+        width:60px;
+        height:60px;
+        border-radius:50%;
+        border:5px solid 
+    }
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <p></p>
+        <p></p>
+        <p></p>
+        <p></p>
+        <p></p>
+        <p></p> 
+        <p></p>
+        <p></p>
+        <p></p>
+        <p></p>
+        <img src="01.png" alt="">
+    </div>
+<script>
+    let aP=document.getElementsByTagName("p"),
+        oImg=document.getElementsByTagName("img")[0]
+        deg=0,
+        r=200,
+        index=0  
+    function move(){
+        let rad=(Math.PI/180)*deg
+        let aBx=r+Math.sin(rad)*r-30
+        let aBy=r-Math.cos(rad)*r-30
+        oImg.style.left=aBx+"px"
+        oImg.style.top=aBy+"px"
+        if(deg%10===0){
+            index=index%aP.length
+            aP[index].style.left=aBx+10+"px"
+            aP[index].style.top=aBy+10+"px"            
+            index++
+            randomColor() 
+        }  
+        deg++  
+    }
+    setInterval(move,1000/60)
+    //setInterval(count1,1000)
+    function randomColor(){
+        let r=Math.floor(Math.random()*256),
+            g=Math.floor(Math.random()*256),
+            b=Math.floor(Math.random()*256)  
+        aP[index].style.backgroundColor=`rgb(${r},${g},${b})`
+        oImg.style.borderColor=`rgb(${r},${g},${b})`
+    }
+</script>    
+</body>
+</html>
