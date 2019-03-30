@@ -5,10 +5,15 @@
 
 const fs=require("fs");
 const path=require("path");
-
-let filePath=path.join(__dirname,"test/2.txt");
+let fp= path.join( __dirname,"test/2.txt");
 
 //写入文件
-fs.writeFile(filePath,"你真帅",{flag:"a"},()=>{})
+//异步API
+fs.writeFile(fp,"你真帅",{ encoding:"utf-8",flag:"a"},(err)=>{console.log(err)})
 
-fs.writeFileSync()
+//同步API
+fs.writeFileSync(fp,"你真漂亮")
+
+
+
+//fs.appendFile()

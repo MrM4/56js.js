@@ -17,7 +17,7 @@
         */
 
         //es5
-            /*function Zhuque(opt){
+            function Zhuque(opt){
                 this.name=opt.name
             }
 
@@ -33,13 +33,14 @@
 
             var zhuque1=new Zhuque({name:"朱雀"})
             console.log(zhuque1);
-            zhuque1.queque()    //类的点操作，实例无法访问
+            //zhuque1.queque()    //类的点操作，实例无法访问
             console.log(zhuque1.queque1)
-        */
+
+
 
      /*
      es6写法      //es6 只能挂静态方法，不能挂静态属性*/
-
+/*
             class Zhuque{
                 constructor(opt){//个性化设置
                     this.name=opt.name
@@ -55,6 +56,7 @@
         /*
             es6继承
         */
+      /*
             class Baby extends Zhuque{
                 constructor(opt){
                     super(opt)          //super在这必须调用依次 只能在这里立即执行
@@ -73,7 +75,7 @@
             let baby1 = new Baby({name:"小雀雀",age:"3"})
             console.log(baby1)
             Baby.sayhello()
-
+*/
         //  super(opt)    的作用
         /*
             包装对象

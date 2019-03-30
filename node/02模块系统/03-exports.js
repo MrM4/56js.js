@@ -2,7 +2,11 @@
 
 /*
 
-    模块最终导出的是 module.exports    .exports和它是引用关系
+    模块最终导出的是 module.exports  ,exports和它是引用关系
+
+    exports=module.exports
+
+
  */
 
 let x=10;
