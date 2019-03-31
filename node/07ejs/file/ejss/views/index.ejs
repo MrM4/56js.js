@@ -1,0 +1,37 @@
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport"
+              content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Document</title>
+        <style type="text/css">
+            table tr.men td{
+             color:green;
+            }
+            table tr.women td{
+                color:red;
+            }
+        </style>
+    </head>
+    <body>
+        <table border="1">
+            <tr>
+                <th>姓名</th>
+                <th>性别</th>
+            </tr>
+            <% teachers.forEach(v=>{%>
+                <tr class="<%= v.sex ?"men":"women"%>">
+                    <td><%= v.name%></td>
+                    <td><%= v.age%></td>
+                </tr>
+            <%}) %>
+        </table>
+    </body>
+    <script>
+
+
+    </script>
+</html>

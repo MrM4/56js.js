@@ -4,7 +4,8 @@
     <file url="file://$PROJECT_DIR$/node/04npm/test" libraries="{zhuque.js/node/04npm/test/node_modules}" />
     <file url="file://$PROJECT_DIR$/node/05express/file" libraries="{zhuque.js/node/05express/file/node_modules}" />
     <file url="file://$PROJECT_DIR$/node/06exress.ejs/file" libraries="{zhuque.js/node/06exress.ejs/file/node_modules}" />
-    <file url="PROJECT" libraries="{@types/ejs, @types/ejs-locals, @types/express, @types/node, HTML, zhuque.js/node/04npm/test/node_modules, zhuque.js/node/05express/file/node_modules, zhuque.js/node/06exress.ejs/file/node_modules}" />
+    <file url="file://$PROJECT_DIR$/node/07ejs/file/ejss" libraries="{zhuque.js/node/07ejs/file/ejs/node_modules}" />
+    <file url="PROJECT" libraries="{@types/ejs, @types/ejs-locals, @types/express, @types/node, zhuque.js/node/04npm/test/node_modules, zhuque.js/node/05express/file/node_modules, zhuque.js/node/06exress.ejs/file/node_modules, zhuque.js/node/07ejs/file/ejs/node_modules}" />
     <includedPredefinedLibrary name="HTTP Response Handler" />
     <includedPredefinedLibrary name="Node.js Core" />
   </component>
